@@ -1,1 +1,126 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CheezyWebsite</title>
+  <link rel="stylesheet" href="kirastyle.css">
+  <link rel="icon" href="logo.png">
+  
+</head>
+<body>
+  <section class="main">
+    <header>
+      <a href="CheezyWebsite.html"><img src="ch.png" class="logo"></a>
+      <div class="toggle"></div>
+      <ul class="navigation">
+        <li><a href="CheezyWebsite.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </header>
+    <div class="content">
+      <div class="text">
+        <h2>CHEEZY<br>Corn <span>Crunch</span></h2>
+        <p>If you love cheese, say CHEEZY!</p>
+        <a href="https://shopee.ph/list/cheezy" class="btn">Order Now</a>
+      </div>
+      <div class="slider">
+        <div class="slides active">
+          <img src="cheez.png">
+        </div>
+        <div class="slides">
+          <img src="ghost.png">
+        </div>
+        <div class="slides">
+          <img src="spicy1.png">
+        </div>
+        <div class="slides">
+          <img src="wings.png">
+        </div>
+        <div class="slides">
+          <img src="jalapeno.png">
+        </div>
+        <div class="slides">
+          <img src="cheddar.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <ul class="sci">
+        <li><a href="https://www.facebook.com/KujoJotarooo"><ion-icon name="logo-facebook"></ion-icon></a></li>
+        <li><a href="https://twitter.com/RenDmtri"><ion-icon name="logo-twitter"></ion-icon></a></li>
+        <li><a href="https://www.instagram.com/onlyrenpo/"><ion-icon name="logo-instagram"></ion-icon></a></li>
+      </ul>
+      <div class="prevNext">
+        <span class="prev">
+        <span class="next">
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script>
+    //toggle 
+    const menutoggle = document.querySelector('.toggle');
+    const navigation = document.querySelector('.navigation');
+    menutoggle.onclick = function(){
+      menutoggle.classList.toggle('active')
+      navigation.classList.toggle('active')
+    }
+    //slider
+    const slides = document.querySelectorAll('.slides');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+
+    let i = 0;
+    let slideInterval;
+
+    function ActiveSlide(n){
+  for(slide of slides) {
+    slide.classList.remove('active');
+    slide.style.opacity = 0; 
+  }
+  slides[n].classList.add('active');
+  slides[n].style.opacity = 1; 
+}
+
+    function ActiveSlide(n){
+      for(slide of slides)
+        slide.classList.remove('active');
+      slides[n].classList.add('active');
+    }
+    function nextSlide() {
+      i = (i + 1) % slides.length;
+      ActiveSlide(i);
+    }
+
+    function prevSlide() {
+      i = (i - 1 + slides.length) % slides.length;
+      ActiveSlide(i);
+    }
+
+    next.addEventListener('click', function() {
+      nextSlide();
+      clearInterval(slideInterval);
+    });
+
+    prev.addEventListener('click', function() {
+      prevSlide();
+      clearInterval(slideInterval);
+    });
+
+    function startSlideShow() {
+      slideInterval = setInterval(function() {
+        nextSlide();
+      }, 2000); 
+    }
+
+    startSlideShow();
+  </script>
+</body>
+</html>
